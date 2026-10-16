@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
@@ -8,6 +8,22 @@ function App() {
   });
 
   const [listaProdutos, setListaProdutos] = useState([]);
+
+  async function carregarLista() {
+    try {
+      const resultado = await fetch("http://localhost:3000/produtos", {
+        method: "GET",
+      });
+
+      const listaCarregada = await resultado.json();
+
+      setListaProdutos(listaCarregada);
+    } catch (error) {}
+  }
+
+  useEffect(() => {
+    carregarLista();
+  }, []);
 
   async function enviarForm(e) {
     e.preventDefault();
@@ -21,7 +37,7 @@ function App() {
 
       const produtoCadastrado = await resultado.json();
 
-      setListaProdutos([ ...listaProdutos, produtoCadastrado ]);
+      setListaProdutos([...listaProdutos, produtoCadastrado]);
     } catch (error) {}
   }
 
