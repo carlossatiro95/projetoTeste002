@@ -10,6 +10,7 @@
       "preço": "999",
       "id": "z7t8tpBpx5s"
     }
+  
   ],
   "$schema": "./node_modules/json-server/schema.json"
 }

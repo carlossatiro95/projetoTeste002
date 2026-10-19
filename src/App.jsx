@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import CardProduto from "./componentes/CardProduto";
 import "./App.css";
 
 function App() {
@@ -61,19 +62,12 @@ function App() {
       </div>
       <div className="box-produtos">
         {listaProdutos.map((produtoMap) => (
-          <div className="produto">
-            <div className="info-produto">
-              <p>Nome: {produtoMap.nome}</p>
-              <p>Preço: {produtoMap.preço}</p>
-            </div>
-            <div className="botoes-comando">
-              <button>Editar</button>
-              <button>Excluir</button>
-            </div>
-          </div>
+          <CardProduto produto={produtoMap} key={produtoMap.id} />
         ))}
       </div>
-      <button className="excluir-tudo">Excluir Tudo</button>
+      {listaProdutos.length > 0 && (
+        <button className="excluir-tudo">Excluir Tudo</button>
+      )}
     </div>
   );
 }
