@@ -60,16 +60,18 @@ function App() {
         </form>
       </div>
       <div className="box-produtos">
-        <div className="produto">
-          <div className="info-produto">
-            <p>Nome:</p>
-            <p>Preço:</p>
+        {listaProdutos.map((produtoMap) => (
+          <div className="produto">
+            <div className="info-produto">
+              <p>Nome: {produtoMap.nome}</p>
+              <p>Preço: {produtoMap.preço}</p>
+            </div>
+            <div className="botoes-comando">
+              <button>Editar</button>
+              <button>Excluir</button>
+            </div>
           </div>
-          <div className="botoes-comando">
-            <button>Editar</button>
-            <button>Excluir</button>
-          </div>
-        </div>
+        ))}
       </div>
       <button className="excluir-tudo">Excluir Tudo</button>
     </div>

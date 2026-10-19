@@ -1,14 +1,14 @@
 {
   "produtos": [
     {
-      "nome": "",
-      "preço": "",
-      "id": "RlViODqMexo"
+      "nome": "mesa",
+      "preço": "000",
+      "id": "_t_ZGeTNWSw"
     },
     {
-      "nome": "wwww",
-      "preço": "000",
-      "id": "tkDYQa24DkA"
+      "nome": "abajur",
+      "preço": "999",
+      "id": "z7t8tpBpx5s"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
