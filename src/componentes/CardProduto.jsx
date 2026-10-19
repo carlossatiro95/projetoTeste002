@@ -1,12 +1,50 @@
-function CardProduto({ produto }) {
+import { useState } from "react";
+
+function CardProduto({ produto, editarProduto }) {
+  const [produtoEditado, setProdutoEditado] = useState({
+    nome: produto.nome,
+    preço: produto.preço,
+  });
+
+  const [editando, setEditando] = useState(false);
+
+  function salvarEdição() {
+    editarProduto(produto.id, produtoEditado);
+    setEditando(false);
+  }
+
   return (
     <div className="produto">
-      <div className="info-produto">
-        <p>Nome: {produto.nome}</p>
-        <p>Preço: {produto.preço}</p>
-      </div>
+      {editando ? (
+        <div className="inputs-produto">
+          <input
+            type="text"
+            value={produtoEditado.nome}
+            onChange={(e) =>
+              setProdutoEditado({ ...produtoEditado, nome: e.target.value })
+            }
+          />
+          <input
+            type="number"
+            value={produtoEditado.preço}
+            onChange={(e) =>
+              setProdutoEditado({ ...produtoEditado, preço: e.target.value })
+            }
+          />
+        </div>
+      ) : (
+        <div className="info-produto">
+          <p>Nome: {produto.nome}</p>
+          <p>Preço: {produto.preço}</p>
+        </div>
+      )}
+
       <div className="botoes-comando">
-        <button>Editar</button>
+        {editando ? (
+          <button onClick={salvarEdição}>Salvar</button>
+        ) : (
+          <button onClick={() => setEditando(true)}>Editar</button>
+        )}
         <button>Excluir</button>
       </div>
     </div>

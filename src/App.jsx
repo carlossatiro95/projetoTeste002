@@ -42,6 +42,29 @@ function App() {
     } catch (error) {}
   }
 
+  async function editarProduto(idProdutoEditado, produtoEditado) {
+    try {
+      const resultado = await fetch(
+        `http://localhost:3000/produtos/${idProdutoEditado}`,
+        {
+          method: "PATCH",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(produtoEditado),
+        },
+      );
+
+      const produtoAtualizado = await resultado.json();
+
+      setListaProdutos(
+        listaProdutos.map((produtoMap) =>
+          produtoMap.id === produtoAtualizado.id
+            ? produtoAtualizado
+            : produtoMap,
+        ),
+      );
+    } catch (error) {}
+  }
+
   return (
     <div className="container">
       <div className="box-form">
@@ -49,11 +72,13 @@ function App() {
           <h1>Cadastro de Produtos</h1>
           <input
             type="text"
+            placeholder="Nome"
             value={produto.nome}
             onChange={(e) => setProduto({ ...produto, nome: e.target.value })}
           />
           <input
             type="number"
+            placeholder="Preço"
             value={produto.preço}
             onChange={(e) => setProduto({ ...produto, preço: e.target.value })}
           />
@@ -62,7 +87,11 @@ function App() {
       </div>
       <div className="box-produtos">
         {listaProdutos.map((produtoMap) => (
-          <CardProduto produto={produtoMap} key={produtoMap.id} />
+          <CardProduto
+            produto={produtoMap}
+            key={produtoMap.id}
+            editarProduto={editarProduto}
+          />
         ))}
       </div>
       {listaProdutos.length > 0 && (

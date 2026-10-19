@@ -2,15 +2,14 @@
   "produtos": [
     {
       "nome": "mesa",
-      "preço": "000",
+      "preço": "225",
       "id": "_t_ZGeTNWSw"
     },
     {
       "nome": "abajur",
-      "preço": "999",
+      "preço": "65",
       "id": "z7t8tpBpx5s"
     }
-  
   ],
   "$schema": "./node_modules/json-server/schema.json"
 }
