@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function CardProduto({ produto, editarProduto }) {
+function CardProduto({ produto, editarProduto, excluirProduto}) {
   const [produtoEditado, setProdutoEditado] = useState({
     nome: produto.nome,
     preço: produto.preço,
@@ -45,7 +45,7 @@ function CardProduto({ produto, editarProduto }) {
         ) : (
           <button onClick={() => setEditando(true)}>Editar</button>
         )}
-        <button>Excluir</button>
+        <button onClick={()=>(excluirProduto(produto.id))}>Excluir</button>
       </div>
     </div>
   );
